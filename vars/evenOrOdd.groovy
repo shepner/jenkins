@@ -1,3 +1,5 @@
+//https://jenkins.io/doc/book/pipeline/shared-libraries/#defining-declarative-pipelines
+
 def call(int buildNumber) {
   if (buildNumber % 2 == 0) {
     pipeline {
