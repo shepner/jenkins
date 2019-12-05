@@ -1,3 +1,5 @@
+the global functions which will be used in the jobs reside here
+
 ```
 (root)
 +- vars
