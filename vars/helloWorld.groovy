@@ -1,5 +1,5 @@
 // this is a simple Hello World test function
 
-helloWorldTest() {
+def helloWorldTest() {
   echo 'Hello World'
 }
