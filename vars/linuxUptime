@@ -1,4 +1,4 @@
-def call(String hostName, String credentialID) {
+def call(def hostName, def credentialID) {
   withCredentials([sshUserPrivateKey(credentialsId: credentialID, keyFileVariable: 'keyFileLocation', passphraseVariable: '', usernameVariable: 'userID')]) {
     sh 'ssh ${userID}@'+hosts[i]+' -i ${keyFileLocation} -o StrictHostKeyChecking=no uptime'
   }
