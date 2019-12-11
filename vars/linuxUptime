@@ -1,8 +1,0 @@
-def hostName = '' //dns name or ip of the remote host
-def credentialID = '' //this is the unique identifier within the credentials store
-
-def call() {
-  withCredentials([sshUserPrivateKey(credentialsId: credentialID, keyFileVariable: 'keyFileLocation', passphraseVariable: '', usernameVariable: 'userID')]) {
-    sh 'ssh ${userID}@'+hosts[i]+' -i ${keyFileLocation} -o StrictHostKeyChecking=no uptime'
-  }
-}
