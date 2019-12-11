@@ -26,10 +26,8 @@ def call(Map stepParams = [:]) {
         returnStdout: true
       ).trim()
       
-    } catch (Exception ex) {
-      return ("ERROR: ${ex}")
-      
-    }
+    } catch (err) { return err.getMessage() }
+    
     return cmdOutput
   }
 }
