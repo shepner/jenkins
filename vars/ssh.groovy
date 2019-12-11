@@ -1,13 +1,21 @@
 /*
-ssh()
+stage('ssh example') {
+  steps {
+    ssh(
+      credentialID: credentialID,
+      remoteHost: remoteHost,
+      cmdLine: cmdLine
+    )
+  }
+}
 */
 
 //import org.asyla.somelibname
 
 def call(Map stepParams = [:]) {
   
-  def credentialID = stepParams.credentialID // unique identifier within Jenkins credental store
-  def remoteHost = stepParams.remoteHost // DNS name or IP of the remote ssh server
+  def credentialID // unique identifier within Jenkins credental store
+  def remoteHost // DNS name or IP of the remote ssh server
   def cmdLine = stepParams.cmdLine ?: "hostname" // Command to remotely execute:  run "hostname" by default
 
   withCredentials([sshUserPrivateKey(credentialsId: credentialID, keyFileVariable: 'keyFileLocation', passphraseVariable: '', usernameVariable: 'userID')]) {
