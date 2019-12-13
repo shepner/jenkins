@@ -1,11 +1,16 @@
 /*
 stage('ssh example') {
+  environment {
+    credentialID = <ID>
+  }
   steps {
-    ssh(
-      credentialID: credentialID,
-      remoteHost: remoteHost,
-      cmdLine: cmdLine
-    )
+    script {
+      ssh(
+        credentialID: credentialID,
+        remoteHost: 'hostname',
+        cmdLine: 'uptime'
+      )
+    }
   }
 }
 */
@@ -18,6 +23,8 @@ def call(Map stepParams = [:]) {
   def remoteHost // DNS name or IP of the remote ssh server
   def cmdLine = stepParams.cmdLine ?: "hostname" // Command to remotely execute:  run "hostname" by default
 
+  echo "this is a test"
+  
   withCredentials([sshUserPrivateKey(credentialsId: credentialID, keyFileVariable: 'keyFileLocation', passphraseVariable: '', usernameVariable: 'userID')]) {
     
     try {
