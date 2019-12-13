@@ -38,14 +38,14 @@ def call(Map defaults = [:]) {
       } catch (def sh_err) { // the ssh terminated abnormally
         echo 'sh error: '+sh_err.getMessage()
         echo 'cmdLine='+cmdLine
-        return
+        throw sh_err
       }
     }
   } catch (def err) { // something went wrong fetching credentials
     echo 'error: '+err.getMessage()
     echo 'credentialID'+credentialID
     echo 'remoteHost='+remoteHost
-    return
+    throw err
   }
   
   return cmdOutput
