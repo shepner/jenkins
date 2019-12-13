@@ -32,20 +32,19 @@ def call(Map defaults = [:]) {
           script: 'ssh ${userID}@'+remoteHost+' -i ${keyFileLocation} -o StrictHostKeyChecking=no '+cmdLine,
           returnStdout: true
         ).trim()
-        
-        return cmdOutput
-        
+
       } catch (sh_err) { // the ssh terminated abnormally
         echo 'sh error: '+sh_err.getMessage()
         echo 'cmdLine='+cmdLine
-        return sh_err.getMessage()
+        return
       }
-
     }
   } catch (err) { // something went wrong fetching credentials
     echo 'error: '+err.getMessage()
     echo 'credentialID'+credentialID
     echo 'remoteHost='+remoteHost
-    return err.getMessage()
+    return
   }
+  
+  return cmdOutput
 }
