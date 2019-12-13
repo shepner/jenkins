@@ -20,9 +20,11 @@ stage('ssh example') {
 
 def call(Map defaults = [:]) {
   
-  def credentialID  = defaults.credentialID // unique identifier within Jenkins credental store
-  def remoteHost = defaults.remoteHost // DNS name or IP of the remote ssh server
-  def cmdLine = defaults.cmdLine ?: "hostname" // Command to remotely execute:  run "hostname" by default
+  String credentialID  = defaults.credentialID // unique identifier within Jenkins credental store
+  String remoteHost = defaults.remoteHost // DNS name or IP of the remote ssh server
+  String cmdLine = defaults.cmdLine ?: "hostname" // Command to remotely execute:  run "hostname" by default
+  
+  String cmdOutput = null // contents of STDOUT
   
   try {
     withCredentials([sshUserPrivateKey(credentialsId: credentialID, keyFileVariable: 'keyFileLocation', passphraseVariable: '', usernameVariable: 'userID')]) {
