@@ -24,10 +24,6 @@ def call(Map defaults = [:]) {
   def remoteHost = defaults.remoteHost // DNS name or IP of the remote ssh server
   def cmdLine = defaults.cmdLine ?: "hostname" // Command to remotely execute:  run "hostname" by default
   
-  // echo credentialID
-  // echo remoteHost
-  // echo cmdLine
-  
   try {
     withCredentials([sshUserPrivateKey(credentialsId: credentialID, keyFileVariable: 'keyFileLocation', passphraseVariable: '', usernameVariable: 'userID')]) {
 
@@ -37,15 +33,19 @@ def call(Map defaults = [:]) {
           returnStdout: true
         ).trim()
         
-      } catch (sh_err) {
-        echo 'sh error: '+sh_err
+        return cmdOutput
+        
+      } catch (sh_err) { // the ssh terminated abnormally
+        echo 'sh error: '+sh_err.getMessage()
+        echo 'cmdLine='+cmdLine
         return sh_err.getMessage()
       }
 
     }
-  } catch (err) {
+  } catch (err) { // something went wrong fetching credentials
     echo 'error: '+err.getMessage()
+    echo 'credentialID'+credentialID
+    echo 'remoteHost='+remoteHost
     return err.getMessage()
   }
-  
 }
