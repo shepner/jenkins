@@ -31,23 +31,21 @@ def call(Map defaults = [:]) {
   try {
     withCredentials([sshUserPrivateKey(credentialsId: credentialID, keyFileVariable: 'keyFileLocation', passphraseVariable: '', usernameVariable: 'userID')]) {
 
-      cmdOutput = sh(
-        script: 'ssh ${userID}@'+remoteHost+' -i ${keyFileLocation} -o StrictHostKeyChecking=no '+cmdLine,
-        returnStdout: true
-      ).trim()
-
-      echo "cmdOutput="+cmdOutput // this doesnt actually run when there is an error
-      // Error example: '`script returned exit code 255`'
-      if (cmdOutput ==~ 'returned.*' ) {
-        echo 'ERROR ERROR ERROR ERROR'
-      } else {
-        return cmdOutput
+      try {
+        cmdOutput = sh(
+          script: 'ssh ${userID}@'+remoteHost+' -i ${keyFileLocation} -o StrictHostKeyChecking=no '+cmdLine,
+          returnStdout: true
+        ).trim()
+        
+      } catch (sh_err) {
+        echo 'sh error: '+sh_err.getMessage()
+        return sh_err.getMessage()
       }
 
     }
-  } catch (err) { 
-    // Note: when using `returnStdout` in `sh()`, you dont get the exit code in a way that works with `try{} catch{}`
-    echo 'caught an error: '+err.getMessage()
-    return err.getMessage() 
+  } catch (err) {
+    echo 'error: '+err.getMessage()
+    return err.getMessage()
   }
+  
 }
