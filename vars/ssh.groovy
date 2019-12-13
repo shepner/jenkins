@@ -5,11 +5,12 @@ stage('ssh example') {
   }
   steps {
     script {
-      ssh(
+      result = ssh(
         credentialID: credentialID,
         remoteHost: 'hostname',
         cmdLine: 'uptime'
       )
+      echo result
     }
   }
 }
