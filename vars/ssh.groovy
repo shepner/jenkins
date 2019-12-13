@@ -36,7 +36,7 @@ def call(Map defaults = [:]) {
         returnStdout: true
       ).trim()
 
-      echo "cmdOutput="+cmdOutput
+      echo "cmdOutput="+cmdOutput // this doesnt actually run when there is an error
       // Error example: '`script returned exit code 255`'
       if (cmdOutput ==~ 'returned.*' ) {
         echo 'ERROR ERROR ERROR ERROR'
@@ -47,6 +47,7 @@ def call(Map defaults = [:]) {
     }
   } catch (err) { 
     // Note: when using `returnStdout` in `sh()`, you dont get the exit code in a way that works with `try{} catch{}`
+    echo 'caught an error: '+err.getMessage()
     return err.getMessage() 
   }
 }
