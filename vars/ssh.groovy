@@ -36,8 +36,9 @@ def call(Map defaults = [:]) {
         returnStdout: true
       ).trim()
 
+      echo "cmdOutput="+cmdOutput
       // Error example: '`script returned exit code 255`'
-      if (cmdOutput ==~ 'script returned exit code.*' ) {
+      if (cmdOutput ==~ 'returned.*' ) {
         echo 'ERROR ERROR ERROR ERROR'
       } else {
         return cmdOutput
