@@ -22,9 +22,9 @@ def call(Map stepParams = [:]) {
   def credentialID // unique identifier within Jenkins credental store
   def remoteHost // DNS name or IP of the remote ssh server
   def cmdLine = stepParams.cmdLine ?: "hostname" // Command to remotely execute:  run "hostname" by default
-  
+  echo "one"
   withCredentials([sshUserPrivateKey(credentialsId: credentialID, keyFileVariable: 'keyFileLocation', passphraseVariable: '', usernameVariable: 'userID')]) {
-    
+    echo "two"
     try {
       echo "about to run ssh"
       cmdOutput = sh(
@@ -32,7 +32,10 @@ def call(Map stepParams = [:]) {
         returnStdout: true
       ).trim()
       echo "ssh done"
-    } catch (err) { return err.getMessage() }
+    } catch (err) { 
+      echo "error"
+      return err.getMessage() 
+    }
     echo cmdOutput
     return cmdOutput
   }
