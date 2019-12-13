@@ -38,7 +38,7 @@ def call(Map defaults = [:]) {
         ).trim()
         
       } catch (sh_err) {
-        echo 'sh error: '+sh_err.getMessage()
+        echo 'sh error: '+sh_err
         return sh_err.getMessage()
       }
 
