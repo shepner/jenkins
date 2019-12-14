@@ -24,11 +24,7 @@ def call(Map defaults = [:]) {
   String result = null
                     
   try {
-      ssh(
-          credentialID: credentialID,
-          remoteHost: remoteHost,
-          cmdLine: 'sudo reboot'
-      )
+      ssh (credentialID: credentialID, remoteHost: remoteHost, cmdLine: 'sudo reboot')
   } catch (def err) {
       echo "ssh session terminated abnormally (as expected)"
   }
