@@ -37,7 +37,7 @@ def call(Map defaults = [:]) {
         status = false // be optimistic and assume this will be successful
 
         try {
-          result = ssh(credentialID: credentialID, remoteHost: sshHost, cmdLine: 'uptime -s')
+          result = ssh(credentialID: credentialID, remoteHost: remoteHost, cmdLine: 'uptime -s')
         }
 
         catch (def ssh_err) { // not able to connect
