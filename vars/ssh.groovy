@@ -31,7 +31,7 @@ def call(Map defaults = [:]) {
 
       try {
         cmdOutput = sh(
-          script: 'ssh ${userID}@'+remoteHost+' -i ${keyFileLocation} -o StrictHostKeyChecking=no '+cmdLine,
+          script: 'ssh ${userID}@'+remoteHost+' -i ${keyFileLocation} -o StrictHostKeyChecking=no "'+cmdLine+'"',
           returnStdout: true
         ).trim()
 
