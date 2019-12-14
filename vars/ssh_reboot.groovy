@@ -16,8 +16,6 @@ stage('ssh reboot example') {
 
 //import org.asyla.somelibname
 
-@Library('asyla') _
-
 def call(Map defaults = [:]) {
   
   String credentialID  = defaults.credentialID // unique identifier within Jenkins credental store
