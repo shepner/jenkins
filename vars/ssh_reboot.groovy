@@ -1,5 +1,5 @@
 /*
-stage('ssh reboot example') {
+stage('ssh_reboot example') {
   environment {
     credentialID = <ID>
   }
