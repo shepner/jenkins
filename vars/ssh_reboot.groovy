@@ -21,12 +21,10 @@ def call(Map defaults = [:]) {
   String credentialID  = defaults.credentialID // unique identifier within Jenkins credental store
   String remoteHost = defaults.remoteHost // DNS name or IP of the remote ssh server
   
-  String cmdOutput = null // contents of STDOUT
-  
   String result = null
                     
   try {
-      result = ssh(
+      ssh(
           credentialID: credentialID,
           remoteHost: remoteHost,
           cmdLine: 'sudo reboot'
