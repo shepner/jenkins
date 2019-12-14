@@ -35,5 +35,5 @@ def call(Map defaults = [:]) {
       echo "ssh session terminated abnormally (as expected)"
   }
 
-  throw 0
+  return "`ssh_reboot()` complete"
 }
