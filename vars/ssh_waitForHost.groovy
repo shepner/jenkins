@@ -1,5 +1,5 @@
 /*
-stage('ssh-waitForHost.groovy example') {
+stage('ssh_waitForHost.groovy example') {
   environment {
     credentialID = <ID>
   }
