@@ -1,15 +1,14 @@
 /*
-stage('ssh example') {
+stage('ssh reboot example') {
   environment {
     credentialID = <ID>
   }
   steps {
     script {
-      result = ssh(
+      ssh_reboot (
         credentialID: credentialID,
         remoteHost: 'hostname'
       )
-      echo result
     }
   }
 }
