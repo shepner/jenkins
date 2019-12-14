@@ -46,7 +46,7 @@ def call(Map defaults = [:]) {
           sleep (sleepTime)
         }
       }
-      return True
+      return true
     }
   }
   catch (def timeout_err) {
