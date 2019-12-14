@@ -5,7 +5,7 @@ stage('ssh-waitForHost.groovy example') {
   }
   steps {
     script {
-      ssh_reboot (
+      Boolean isUp = ssh-waitForHost.groovy (
         credentialID: credentialID,
         remoteHost: 'hostname'
         waitTime: minutesToWait
