@@ -1,4 +1,5 @@
 //https://www.edureka.co/community/55640/jenkins-docker-docker-image-jenkins-pipeline-docker-registry
+//https://jenkins.io/doc/book/pipeline/docker/
 
 pipeline {
   environment {
