@@ -2,7 +2,7 @@
 
 pipeline {
   environment {
-    registry = "gustavoapolinario/docker-test"
+    registry = "shepner/Docker-shell"
     registryCredential = 'dockerhub'
     dockerImage = ''
   }
@@ -12,7 +12,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/gustavoapolinario/microservices-node-example-todo-frontend.git'
+        git 'https://github.com/shepner/Docker-shell.git'
       }
     }
     
